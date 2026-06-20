@@ -1,4 +1,18 @@
 {
+  "shadow": {
+    "sm": {
+      "$value": "0 1px 4px rgba(0,0,0,0.32), 0 0 0 1px rgba(255,255,255,0.04)",
+      "$type": "other"
+    },
+    "md": {
+      "$value": "0 4px 16px rgba(0,0,0,0.48), 0 0 0 1px rgba(255,255,255,0.06)",
+      "$type": "other"
+    },
+    "lg": {
+      "$value": "0 8px 32px rgba(0,0,0,0.56), 0 0 0 1px rgba(255,255,255,0.08)",
+      "$type": "other"
+    }
+  },
   "color": {
     "background": {
       "primary":   { "$value": "{color.primitive.gray.950}", "$type": "color" },
@@ -23,10 +37,11 @@
       "link":      { "$value": "{color.primitive.green.bright}", "$type": "color" }
     },
     "accent": {
-      "default":    { "$value": "{color.primitive.green.400}",   "$type": "color" },
-      "subtle":     { "$value": "rgba(45, 138, 95, 0.15)",       "$type": "color" },
-      "emphasis":   { "$value": "{color.primitive.green.bright}", "$type": "color" },
-      "foreground": { "$value": "{color.primitive.gray.0}",      "$type": "color" }
+      "default":              { "$value": "{color.primitive.green.400}",    "$type": "color" },
+      "subtle":               { "$value": "rgba(45, 138, 95, 0.15)",        "$type": "color" },
+      "emphasis":             { "$value": "{color.primitive.green.bright}",  "$type": "color" },
+      "foreground":           { "$value": "{color.primitive.gray.0}",       "$type": "color" },
+      "emphasis-foreground":  { "$value": "{color.primitive.gray.950}",     "$type": "color" }
     },
     "success": {
       "default":    { "$value": "{color.primitive.green.bright}", "$type": "color" },
