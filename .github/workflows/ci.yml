@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, sprint-*]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Build · Typecheck · Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm turbo build
+        # turbo respects dependsOn: ["^build"] — tokens builds before react,
+        # react builds before storybook. dist/** is cached between jobs.
+
+      - name: Typecheck
+        run: pnpm turbo typecheck
+
+      - name: Test
+        run: pnpm turbo test
+        # turbo test dependsOn ["^build"] — build cache is reused here
+
+      - name: Lint
+        run: pnpm turbo lint

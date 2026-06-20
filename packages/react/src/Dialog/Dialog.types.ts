@@ -1,54 +1,41 @@
 import type { ReactNode, HTMLAttributes, ButtonHTMLAttributes } from 'react'
 
-// ─── Controlled / uncontrolled API (Type A) ───────────────────────────────────
+// ─── Controlled / uncontrolled API ───────────────────────────────────────────
 
 export interface DialogRootProps {
-  /** Controlled open state. */
-  isOpen?: boolean
+  isOpen?:        boolean
+  defaultOpen?:   boolean
+  onOpenChange?:  (isOpen: boolean) => void
+  children:       ReactNode
+}
 
-  /** Initial open state for uncontrolled usage. */
-  defaultOpen?: boolean
+// ─── Composition sub-components ───────────────────────────────────────────────
 
-  /** Called when the open state changes. */
-  onOpenChange?: (isOpen: boolean) => void
-
+export interface DialogPortalProps {
   children: ReactNode
 }
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+export interface DialogOverlayProps extends HTMLAttributes<HTMLDivElement> {}
 
 export interface DialogTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** @see Button asChild for polymorphism */
-  asChild?: boolean
-  children: ReactNode
+  asChild?:  boolean
+  children:  ReactNode
 }
 
 export interface DialogContentProps extends HTMLAttributes<HTMLDivElement> {
   /**
-   * Accessible description for the dialog announced by screen readers.
-   * Pass when the dialog has no visible description element.
+   * Provide when Dialog.Title is not rendered — gives the dialog an accessible name.
    */
   'aria-label'?: string
-  children: ReactNode
+  children:      ReactNode
 }
 
-export interface DialogHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
-}
-
-export interface DialogTitleProps extends HTMLAttributes<HTMLHeadingElement> {
-  children: ReactNode
-}
-
-export interface DialogDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {
-  children: ReactNode
-}
-
-export interface DialogFooterProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
-}
+export interface DialogHeaderProps      extends HTMLAttributes<HTMLDivElement>       { children: ReactNode }
+export interface DialogTitleProps       extends HTMLAttributes<HTMLHeadingElement>   { children: ReactNode }
+export interface DialogDescriptionProps extends HTMLAttributes<HTMLParagraphElement> { children: ReactNode }
+export interface DialogFooterProps      extends HTMLAttributes<HTMLDivElement>       { children: ReactNode }
 
 export interface DialogCloseProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  asChild?: boolean
+  asChild?:  boolean
   children?: ReactNode
 }

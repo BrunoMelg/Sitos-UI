@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
 import { Dialog } from './Dialog'
 
@@ -9,19 +10,22 @@ function renderDialog(props?: { defaultOpen?: boolean; onOpenChange?: (v: boolea
   return render(
     <Dialog.Root {...props}>
       <Dialog.Trigger>Open dialog</Dialog.Trigger>
-      <Dialog.Content>
-        <Dialog.Header>
-          <Dialog.Title>Confirm action</Dialog.Title>
-          <Dialog.Close />
-        </Dialog.Header>
-        <Dialog.Description>Are you sure you want to continue?</Dialog.Description>
-        <Dialog.Footer>
-          <Dialog.Close asChild>
-            <button>Cancel</button>
-          </Dialog.Close>
-          <button>Confirm</button>
-        </Dialog.Footer>
-      </Dialog.Content>
+      <Dialog.Portal>
+        <Dialog.Overlay />
+        <Dialog.Content>
+          <Dialog.Header>
+            <Dialog.Title>Confirm action</Dialog.Title>
+            <Dialog.Close />
+          </Dialog.Header>
+          <Dialog.Description>Are you sure you want to continue?</Dialog.Description>
+          <Dialog.Footer>
+            <Dialog.Close asChild>
+              <button>Cancel</button>
+            </Dialog.Close>
+            <button>Confirm</button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Portal>
     </Dialog.Root>,
   )
 }
@@ -48,9 +52,10 @@ describe('Dialog', () => {
     it('closes when the overlay is clicked', async () => {
       const user = userEvent.setup()
       renderDialog({ defaultOpen: true })
-      // Overlay is the sibling before the dialog panel — click outside the panel
       const overlay = document.querySelector('[aria-hidden="true"]')
       await user.click(overlay!)
+      // Portal stays mounted for EXIT_DURATION_MS (350ms) to play exit animation;
+      // waitFor polls until the dialog unmounts (default timeout: 1000ms).
       await waitFor(() =>
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument(),
       )
@@ -75,7 +80,7 @@ describe('Dialog', () => {
     })
 
     it('calls onOpenChange when state changes', async () => {
-      const user = userEvent.setup()
+      const user    = userEvent.setup()
       const handler = vi.fn()
       renderDialog({ onOpenChange: handler })
       await user.click(screen.getByRole('button', { name: 'Open dialog' }))
@@ -98,13 +103,27 @@ describe('Dialog', () => {
       expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true')
     })
 
-    it('is labelled by the title', async () => {
+    it('is labelled by the title when Dialog.Title is rendered', async () => {
       const user = userEvent.setup()
       renderDialog()
       await user.click(screen.getByRole('button', { name: 'Open dialog' }))
       const dialog = screen.getByRole('dialog')
-      const title = screen.getByText('Confirm action')
+      const title  = screen.getByText('Confirm action')
       expect(dialog).toHaveAttribute('aria-labelledby', title.id)
+    })
+
+    it('omits aria-labelledby when Dialog.Title is absent', () => {
+      render(
+        <Dialog.Root isOpen>
+          <Dialog.Portal>
+            <Dialog.Overlay />
+            <Dialog.Content aria-label="Standalone dialog">
+              <p>Content without a title element.</p>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>,
+      )
+      expect(screen.getByRole('dialog')).not.toHaveAttribute('aria-labelledby')
     })
 
     it('trigger has aria-haspopup="dialog"', () => {
@@ -120,21 +139,52 @@ describe('Dialog', () => {
     it('respects the controlled isOpen prop', () => {
       const { rerender } = render(
         <Dialog.Root isOpen={false}>
-          <Dialog.Content>
-            <Dialog.Title>Hello</Dialog.Title>
-          </Dialog.Content>
+          <Dialog.Portal>
+            <Dialog.Overlay />
+            <Dialog.Content>
+              <Dialog.Title>Hello</Dialog.Title>
+            </Dialog.Content>
+          </Dialog.Portal>
         </Dialog.Root>,
       )
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 
       rerender(
         <Dialog.Root isOpen={true}>
-          <Dialog.Content>
-            <Dialog.Title>Hello</Dialog.Title>
-          </Dialog.Content>
+          <Dialog.Portal>
+            <Dialog.Overlay />
+            <Dialog.Content>
+              <Dialog.Title>Hello</Dialog.Title>
+            </Dialog.Content>
+          </Dialog.Portal>
         </Dialog.Root>,
       )
       expect(screen.getByRole('dialog')).toBeInTheDocument()
+    })
+  })
+
+  describe('accessibility', () => {
+    it('open dialog has no violations', async () => {
+      render(
+        <Dialog.Root isOpen>
+          <Dialog.Portal>
+            <Dialog.Overlay />
+            <Dialog.Content>
+              <Dialog.Header>
+                <Dialog.Title>Confirm action</Dialog.Title>
+                <Dialog.Close />
+              </Dialog.Header>
+              <Dialog.Description>Are you sure you want to continue?</Dialog.Description>
+              <Dialog.Footer>
+                <button>Cancel</button>
+                <button>Confirm</button>
+              </Dialog.Footer>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>,
+      )
+      // axe checks document.body because createPortal renders outside the React root container
+      expect(await axe(document.body)).toHaveNoViolations()
     })
   })
 })

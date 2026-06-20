@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from './Button'
+import { DensityProvider } from '../providers/Density'
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
@@ -67,12 +68,9 @@ export const Density: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
       {(['compact', 'comfortable', 'spacious'] as const).map((d) => (
-        <Button
-          key={d}
-          style={{ ['--density' as string]: d }}
-        >
-          {d.charAt(0).toUpperCase() + d.slice(1)}
-        </Button>
+        <DensityProvider key={d} density={d}>
+          <Button>{d.charAt(0).toUpperCase() + d.slice(1)}</Button>
+        </DensityProvider>
       ))}
     </div>
   ),

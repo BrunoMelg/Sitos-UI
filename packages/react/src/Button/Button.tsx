@@ -1,7 +1,9 @@
+'use client'
+
 import { forwardRef, type Ref } from 'react'
 import { Slot } from '@orchard-ui/primitives'
 import { useDensity } from '../providers/Density'
-import { buttonRecipe, spinnerStyle } from './Button.css'
+import { buttonRecipe, buttonContentStyle, spinnerStyle } from './Button.css'
 import type { ButtonProps } from './Button.types'
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
@@ -27,7 +29,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       variant,
       intent,
       density,
-      isDisabled: isDisabled || isLoading,
+      // isDisabled and isLoading are semantically distinct:
+      //   isDisabled → muted colors, not-allowed cursor (permanent)
+      //   isLoading  → full intent colors, wait cursor, spinner (temporary)
+      // aria-disabled and onClick guard cover both; the recipe covers only actual disabled.
+      isDisabled,
       isLoading,
     }),
     className,
@@ -36,15 +42,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     .join(' ')
 
   const sharedProps = {
-    className: classes,
-    'aria-disabled': isDisabled || isLoading ? (true as const) : undefined,
-    'aria-busy': isLoading ? (true as const) : undefined,
-    onClick: isDisabled || isLoading ? undefined : onClick,
+    className:        classes,
+    'aria-disabled':  isDisabled || isLoading ? (true as const) : undefined,
+    'aria-busy':      isLoading ? (true as const) : undefined,
+    'data-disabled':  isDisabled || undefined,
+    'data-loading':   isLoading || undefined,
+    onClick:          isDisabled || isLoading ? undefined : onClick,
     ...rest,
   }
 
   // asChild: Slot must receive exactly one ReactElement child.
-  // leadingElement/trailingElement are not applicable — the child owns its content.
   if (asChild) {
     return (
       <Slot ref={ref as Ref<HTMLElement>} {...sharedProps}>
@@ -53,15 +60,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     )
   }
 
-  const leading = isLoading
-    ? <span className={spinnerStyle} aria-hidden="true" />
-    : leadingElement
-
   return (
     <button ref={ref} type="button" {...sharedProps}>
-      {leading}
-      {children}
-      {trailingElement}
+      {isLoading && <span className={spinnerStyle} aria-hidden="true" />}
+      {/*
+       * Content wrapper preserves the button's natural width during loading.
+       * The spinner is absolute-positioned; opacity:0 hides content without
+       * collapsing layout, keeping the button stable (no layout shift).
+       */}
+      <span
+        className={buttonContentStyle}
+        style={isLoading ? { opacity: 0 } : undefined}
+      >
+        {leadingElement}
+        {children}
+        {trailingElement}
+      </span>
     </button>
   )
 })

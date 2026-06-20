@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
 import { Button } from './Button'
 
@@ -87,13 +88,15 @@ describe('Button', () => {
       expect(btn).toContainElement(icon)
     })
 
-    it('replaces leadingElement with spinner when loading', () => {
+    it('hides content and shows spinner when loading (layout preserved)', () => {
       const { container } = render(
         <Button isLoading leadingElement={<span data-testid="icon" />}>
           Save
         </Button>,
       )
-      expect(screen.queryByTestId('icon')).not.toBeInTheDocument()
+      // Icon stays in DOM (opacity:0 on wrapper) to preserve button width
+      expect(screen.getByTestId('icon')).toBeInTheDocument()
+      // Spinner is rendered on top
       expect(container.querySelector('[aria-hidden="true"]')).toBeInTheDocument()
     })
   })
@@ -117,6 +120,23 @@ describe('Button', () => {
       )
       const link = screen.getByRole('link')
       expect(link.className).toContain('extra')
+    })
+  })
+
+  describe('accessibility', () => {
+    it('default button has no violations', async () => {
+      const { container } = render(<Button>Save</Button>)
+      expect(await axe(container)).toHaveNoViolations()
+    })
+
+    it('disabled button has no violations', async () => {
+      const { container } = render(<Button isDisabled>Save</Button>)
+      expect(await axe(container)).toHaveNoViolations()
+    })
+
+    it('loading button has no violations', async () => {
+      const { container } = render(<Button isLoading>Saving</Button>)
+      expect(await axe(container)).toHaveNoViolations()
     })
   })
 })

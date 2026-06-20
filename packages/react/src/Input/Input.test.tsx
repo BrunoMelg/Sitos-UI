@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
 import { Input } from './Input'
 
@@ -93,6 +94,25 @@ describe('Input', () => {
     it('renders trailingElement', () => {
       render(<Input label="Search" trailingElement={<span data-testid="icon" />} />)
       expect(screen.getByTestId('icon')).toBeInTheDocument()
+    })
+  })
+
+  describe('accessibility', () => {
+    it('default input has no violations', async () => {
+      const { container } = render(<Input label="Email" />)
+      expect(await axe(container)).toHaveNoViolations()
+    })
+
+    it('input with error message has no violations', async () => {
+      const { container } = render(
+        <Input label="Email" errorMessage="Email is required" />,
+      )
+      expect(await axe(container)).toHaveNoViolations()
+    })
+
+    it('disabled input has no violations', async () => {
+      const { container } = render(<Input label="Email" isDisabled />)
+      expect(await axe(container)).toHaveNoViolations()
     })
   })
 })

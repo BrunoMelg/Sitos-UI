@@ -17,9 +17,11 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/index.css"
   },
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -30,13 +32,21 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@orchard-ui/core": "workspace:*",
-    "@orchard-ui/hooks": "workspace:*",
-    "@orchard-ui/icons": "workspace:*",
-    "@orchard-ui/motion": "workspace:*",
     "@orchard-ui/primitives": "workspace:*",
-    "@orchard-ui/themes": "workspace:*",
     "@orchard-ui/tokens": "workspace:*",
+    "@react-aria/combobox": "^3.16.1",
+    "@react-aria/interactions": "^3.28.1",
+    "@react-aria/listbox": "^3.16.1",
+    "@react-aria/menu": "^3.22.1",
+    "@react-aria/overlays": "^3.32.1",
+    "@react-aria/tabs": "^3.12.1",
+    "@react-aria/tooltip": "^3.10.1",
+    "@react-aria/utils": "^3.34.1",
+    "@react-stately/combobox": "^3.14.1",
+    "@react-stately/list": "^3.14.1",
+    "@react-stately/menu": "^3.10.1",
+    "@react-stately/tabs": "^3.9.1",
+    "@react-stately/tooltip": "^3.6.1",
     "@vanilla-extract/css": "^1.16.0",
     "@vanilla-extract/recipes": "^0.5.3"
   },
@@ -50,6 +60,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
+    "@types/jest-axe": "^3.5.9",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vanilla-extract/esbuild-plugin": "^2.3.14",
@@ -57,6 +68,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.8",
     "eslint": "^9.17.0",
+    "jest-axe": "^10.0.0",
     "jsdom": "^25.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
