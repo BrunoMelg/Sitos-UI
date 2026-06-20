@@ -29,10 +29,10 @@
       "foreground": { "$value": "{color.primitive.gray.0}",    "$type": "color" }
     },
     "success": {
-      "default":    { "$value": "{color.primitive.green.500}", "$type": "color" },
-      "subtle":     { "$value": "{color.primitive.green.50}",  "$type": "color" },
-      "emphasis":   { "$value": "{color.primitive.green.400}", "$type": "color" },
-      "foreground": { "$value": "{color.primitive.gray.0}",    "$type": "color" }
+      "default":    { "$value": "{color.primitive.green.bright}", "$type": "color" },
+      "subtle":     { "$value": "{color.primitive.green.50}",     "$type": "color" },
+      "emphasis":   { "$value": "{color.primitive.green.600}",    "$type": "color" },
+      "foreground": { "$value": "{color.primitive.gray.950}",     "$type": "color" }
     },
     "danger": {
       "default":    { "$value": "{color.primitive.red.500}", "$type": "color" },
