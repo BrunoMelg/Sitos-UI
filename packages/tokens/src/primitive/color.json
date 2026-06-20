@@ -1,0 +1,50 @@
+{
+  "color": {
+    "primitive": {
+      "gray": {
+        "0":    { "$value": "#FFFFFF",  "$type": "color" },
+        "50":   { "$value": "#F7F6F3",  "$type": "color" },
+        "100":  { "$value": "#F0EFEC",  "$type": "color" },
+        "200":  { "$value": "#E5E4E0",  "$type": "color" },
+        "300":  { "$value": "#D1D0CC",  "$type": "color" },
+        "400":  { "$value": "#9D9DA3",  "$type": "color" },
+        "500":  { "$value": "#6B6B70",  "$type": "color" },
+        "600":  { "$value": "#4A4A4F",  "$type": "color" },
+        "700":  { "$value": "#3A3A3C",  "$type": "color" },
+        "800":  { "$value": "#2C2C2E",  "$type": "color" },
+        "900":  { "$value": "#1C1C1E",  "$type": "color" },
+        "950":  { "$value": "#111113",  "$type": "color" },
+        "1000": { "$value": "#F2F2F7",  "$type": "color" }
+      },
+      "green": {
+        "50":     { "$value": "#EAF4EE", "$type": "color" },
+        "100":    { "$value": "#D4EAD9", "$type": "color" },
+        "200":    { "$value": "#A8D4B3", "$type": "color" },
+        "300":    { "$value": "#6DB88A", "$type": "color" },
+        "400":    { "$value": "#2D8A5F", "$type": "color" },
+        "500":    { "$value": "#1A6847", "$type": "color" },
+        "600":    { "$value": "#155738", "$type": "color" },
+        "700":    { "$value": "#0F4028", "$type": "color" },
+        "bright": { "$value": "#34A870", "$type": "color" }
+      },
+      "red": {
+        "50":     { "$value": "#FEF2F2", "$type": "color" },
+        "500":    { "$value": "#DC2626", "$type": "color" },
+        "600":    { "$value": "#B91C1C", "$type": "color" },
+        "bright": { "$value": "#F87171", "$type": "color" }
+      },
+      "amber": {
+        "50":     { "$value": "#FFFBEB", "$type": "color" },
+        "500":    { "$value": "#D97706", "$type": "color" },
+        "600":    { "$value": "#B45309", "$type": "color" },
+        "bright": { "$value": "#FBBF24", "$type": "color" }
+      },
+      "blue": {
+        "50":     { "$value": "#EFF6FF", "$type": "color" },
+        "500":    { "$value": "#2563EB", "$type": "color" },
+        "600":    { "$value": "#1D4ED8", "$type": "color" },
+        "bright": { "$value": "#60A5FA", "$type": "color" }
+      }
+    }
+  }
+}

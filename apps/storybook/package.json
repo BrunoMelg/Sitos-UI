@@ -1,0 +1,33 @@
+{
+  "name": "@orchard-ui/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@orchard-ui/primitives": "workspace:*",
+    "@orchard-ui/react": "workspace:*",
+    "@orchard-ui/themes": "workspace:*",
+    "@orchard-ui/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@orchard-ui/tsconfig": "workspace:*",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
+    "@storybook/test": "^8.4.7",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vanilla-extract/vite-plugin": "^4.0.19",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^8.4.7",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6"
+  }
+}

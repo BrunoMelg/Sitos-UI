@@ -1,0 +1,11 @@
+{
+  "border-radius": {
+    "none": { "$value": "0px",    "$type": "other", "$description": "No rounding. Inline elements, code blocks." },
+    "sm":   { "$value": "4px",    "$type": "other", "$description": "Subtle rounding. Badges, tags, small chips." },
+    "md":   { "$value": "8px",    "$type": "other", "$description": "Default. Buttons, inputs, small cards." },
+    "lg":   { "$value": "12px",   "$type": "other", "$description": "Large cards, popovers, dropdowns." },
+    "xl":   { "$value": "16px",   "$type": "other", "$description": "Modals, sheets, dialogs." },
+    "2xl":  { "$value": "24px",   "$type": "other", "$description": "Hero cards, large overlays." },
+    "full": { "$value": "9999px", "$type": "other", "$description": "Pill shape. Avatar, switch, pill badge." }
+  }
+}

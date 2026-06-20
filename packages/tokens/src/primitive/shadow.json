@@ -1,0 +1,19 @@
+{
+  "shadow": {
+    "sm": {
+      "$value": "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+      "$type": "other",
+      "$description": "Barely perceptible. Popovers, tooltips at elevation 2."
+    },
+    "md": {
+      "$value": "0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)",
+      "$type": "other",
+      "$description": "Moderate. Modals, sheets at elevation 3."
+    },
+    "lg": {
+      "$value": "0 8px 32px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06)",
+      "$type": "other",
+      "$description": "Prominent. Toasts, notifications at elevation 4."
+    }
+  }
+}

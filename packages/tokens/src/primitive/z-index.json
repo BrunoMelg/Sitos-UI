@@ -1,0 +1,12 @@
+{
+  "z-index": {
+    "base":     { "$value": "0",   "$type": "other", "$description": "Default document flow." },
+    "raised":   { "$value": "10",  "$type": "other", "$description": "Sticky elements, elevated content within page." },
+    "dropdown": { "$value": "100", "$type": "other", "$description": "Dropdowns, select menus, autocomplete lists." },
+    "sticky":   { "$value": "200", "$type": "other", "$description": "Sticky headers and sidebars." },
+    "overlay":  { "$value": "300", "$type": "other", "$description": "Modal backdrop / scrim." },
+    "modal":    { "$value": "400", "$type": "other", "$description": "Modal dialogs and sheets." },
+    "popover":  { "$value": "500", "$type": "other", "$description": "Popovers and tooltips (above modals)." },
+    "toast":    { "$value": "600", "$type": "other", "$description": "Toast notifications (highest layer)." }
+  }
+}

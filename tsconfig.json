@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "tools/tsconfig" },
+    { "path": "tools/eslint-config" },
+    { "path": "packages/core" },
+    { "path": "packages/tokens" },
+    { "path": "packages/motion" },
+    { "path": "packages/hooks" },
+    { "path": "packages/icons" },
+    { "path": "packages/themes" },
+    { "path": "packages/primitives" },
+    { "path": "packages/react" }
+  ]
+}

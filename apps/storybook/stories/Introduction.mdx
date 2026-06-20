@@ -1,0 +1,57 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Orchard UI / Introduction" />
+
+# Orchard UI
+
+A premium React component ecosystem inspired by Apple's Human Interface Guidelines.
+
+## Design Principles
+
+**Clarity** — Content is always more important than the interface.
+Components are calm, purposeful, and never compete with the content they contain.
+
+**Simplicity** — Components do one thing, and do it well.
+Prefer composition of simple components over large monolithic ones.
+
+**Consistency** — Every component feels like it belongs to the same system.
+APIs are predictable. Visuals share the same rhythm.
+
+**Accessibility** — Accessible by default, not as an afterthought.
+WCAG AA minimum. Full keyboard navigation. Screen reader support.
+
+**Elegance** — Every interaction should feel intentional and polished.
+Smooth transitions. Subtle shadows. Generous whitespace.
+
+---
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| `@orchard-ui/tokens` | Design tokens — the source of truth for all visual values |
+| `@orchard-ui/core` | Core utilities and base TypeScript types |
+| `@orchard-ui/themes` | Theme definitions and ThemeProvider |
+| `@orchard-ui/motion` | Animation primitives and motion utilities |
+| `@orchard-ui/hooks` | Shared React hooks |
+| `@orchard-ui/icons` | Optimized SVG icon components |
+| `@orchard-ui/react` | The component library |
+
+## Getting Started
+
+```bash
+pnpm add @orchard-ui/react
+```
+
+```tsx
+import { ThemeProvider } from '@orchard-ui/themes'
+import '@orchard-ui/react/styles.css'
+
+function App() {
+  return (
+    <ThemeProvider>
+      <YourApp />
+    </ThemeProvider>
+  )
+}
+```

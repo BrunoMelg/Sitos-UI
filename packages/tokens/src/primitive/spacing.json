@@ -1,0 +1,12 @@
+{
+  "spacing": {
+    "2xs": { "$value": "2px",  "$type": "other", "$description": "Hairline gaps. Tight icon-to-label pairing." },
+    "xs":  { "$value": "4px",  "$type": "other", "$description": "Sibling elements within a component." },
+    "sm":  { "$value": "8px",  "$type": "other", "$description": "Closely related elements. Button vertical padding." },
+    "md":  { "$value": "16px", "$type": "other", "$description": "Standard component internal padding." },
+    "lg":  { "$value": "24px", "$type": "other", "$description": "Between related components in a group." },
+    "xl":  { "$value": "32px", "$type": "other", "$description": "Between sections. Page-level rhythm." },
+    "2xl": { "$value": "48px", "$type": "other", "$description": "Major section breaks." },
+    "3xl": { "$value": "64px", "$type": "other", "$description": "Page-level margins at large viewports." }
+  }
+}

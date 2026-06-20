@@ -1,0 +1,43 @@
+{
+  "name": "@orchard-ui/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for Orchard UI — the single source of truth for all visual values",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./css": "./dist/tokens.css",
+    "./css/dark": "./dist/tokens-dark.css"
+  },
+  "sideEffects": ["**/*.css"],
+  "scripts": {
+    "build": "tsup && node style-dictionary.config.mjs",
+    "dev": "tsup --watch",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@orchard-ui/eslint-config": "workspace:*",
+    "@orchard-ui/tsconfig": "workspace:*",
+    "@vitest/coverage-v8": "^2.1.8",
+    "eslint": "^9.17.0",
+    "style-dictionary": "^4.3.3",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

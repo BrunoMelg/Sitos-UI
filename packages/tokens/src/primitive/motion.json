@@ -1,0 +1,26 @@
+{
+  "duration": {
+    "instant":    { "$value": "0ms",   "$type": "other", "$description": "Checkbox, toggle — immediate state change." },
+    "fast":       { "$value": "100ms", "$type": "other", "$description": "Hover, active press, focus ring appearance." },
+    "normal":     { "$value": "200ms", "$type": "other", "$description": "Dropdown, tooltip, popover open/close." },
+    "slow":       { "$value": "350ms", "$type": "other", "$description": "Modal, sheet, drawer overlay." },
+    "deliberate": { "$value": "500ms", "$type": "other", "$description": "Page-level transitions, empty state reveals." }
+  },
+  "easing": {
+    "enter":    {
+      "$value": "cubic-bezier(0, 0, 0.2, 1)",
+      "$type": "other",
+      "$description": "Elements entering. Fast start, slow finish."
+    },
+    "exit":     {
+      "$value": "cubic-bezier(0.4, 0, 1, 1)",
+      "$type": "other",
+      "$description": "Elements leaving. Slow start, fast finish."
+    },
+    "in-place": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$type": "other",
+      "$description": "In-place state changes. Symmetric."
+    }
+  }
+}
