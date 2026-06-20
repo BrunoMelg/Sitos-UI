@@ -23,10 +23,11 @@
       "link":      { "$value": "{color.primitive.green.bright}", "$type": "color" }
     },
     "accent": {
-      "default":    { "$value": "{color.primitive.green.400}",   "$type": "color" },
-      "subtle":     { "$value": "rgba(45, 138, 95, 0.15)",       "$type": "color" },
-      "emphasis":   { "$value": "{color.primitive.green.bright}", "$type": "color" },
-      "foreground": { "$value": "{color.primitive.gray.0}",      "$type": "color" }
+      "default":              { "$value": "{color.primitive.green.400}",    "$type": "color" },
+      "subtle":               { "$value": "rgba(45, 138, 95, 0.15)",        "$type": "color" },
+      "emphasis":             { "$value": "{color.primitive.green.bright}",  "$type": "color" },
+      "foreground":           { "$value": "{color.primitive.gray.0}",       "$type": "color" },
+      "emphasis-foreground":  { "$value": "{color.primitive.gray.950}",     "$type": "color" }
     },
     "success": {
       "default":    { "$value": "{color.primitive.green.bright}", "$type": "color" },

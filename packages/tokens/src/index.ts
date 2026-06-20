@@ -32,10 +32,11 @@ export const vars = {
       link:      'var(--orchard-color-text-link)',
     },
     accent: {
-      default:    'var(--orchard-color-accent-default)',
-      subtle:     'var(--orchard-color-accent-subtle)',
-      emphasis:   'var(--orchard-color-accent-emphasis)',
-      foreground: 'var(--orchard-color-accent-foreground)',
+      default:             'var(--orchard-color-accent-default)',
+      subtle:              'var(--orchard-color-accent-subtle)',
+      emphasis:            'var(--orchard-color-accent-emphasis)',
+      foreground:          'var(--orchard-color-accent-foreground)',
+      emphasisForeground:  'var(--orchard-color-accent-emphasis-foreground)',
     },
     success: {
       default:    'var(--orchard-color-success-default)',
