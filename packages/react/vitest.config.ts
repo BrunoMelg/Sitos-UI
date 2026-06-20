@@ -5,6 +5,7 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 export default defineConfig({
   plugins: [vanillaExtractPlugin(), react()],
   test: {
+    globals: true,
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
